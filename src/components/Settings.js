@@ -4,9 +4,11 @@ import { Box } from "@mui/system";
 import SelectField from "./SelectField";
 import TextFieldComp from "./TextFieldComp";
 import useAxios from "../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const { response, error, loading } = useAxios({ url: "/api_category.php" });
+  const navigate = useNavigate();
 
   if (loading) {
     return (
@@ -37,6 +39,7 @@ const Settings = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/questions");
   };
 
   return (
