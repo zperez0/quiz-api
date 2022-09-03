@@ -1,5 +1,11 @@
 import React from "react";
-import { Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import SelectField from "./SelectField";
 import TextFieldComp from "./TextFieldComp";
@@ -42,22 +48,32 @@ const Settings = () => {
     navigate("/questions");
   };
 
+  const card = (
+    <React.Fragment>
+      <CardContent>
+        <Typography variant="h2" fontWeight="bold">
+        ✨Quiz Wizard✨
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <SelectField options={response.trivia_categories} label="Category" />
+          <SelectField options={difficultyOptions} label="Difficulty" />
+          <SelectField options={typeOptions} label="Type" />
+          <TextFieldComp />
+          <Box mt={3} width="100%">
+            <Button fullWidth variant="contained" type="submit">
+              Start
+            </Button>
+          </Box>
+        </form>
+      </CardContent>
+    </React.Fragment>
+  );
+
   return (
     <>
-      <Typography variant="h2" fontWeight="bold">
-        Quiz
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <SelectField options={response.trivia_categories} label="Category" />
-        <SelectField options={difficultyOptions} label="Difficulty" />
-        <SelectField options={typeOptions} label="Type" />
-        <TextFieldComp />
-        <Box mt={3} width="100%">
-          <Button fullWidth variant="contained" type="submit">
-            Start
-          </Button>
-        </Box>
-      </form>
+    <Typography variant="h5" fontWeight="bold" color={"white"} mb={1} >Welcome to the Quiz Wizard! </Typography>
+    <Typography color={"white"} mb={3} >Are you smarter than a Wizard? Pick a category, difficulty, type, and amount. If you want to randomize your results just hit the 'START' button!</Typography>
+      <Card variant="outlined" style={{ backgroundColor: "#f9f5f4" }}>{card}</Card>
     </>
   );
 };
