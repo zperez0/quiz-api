@@ -1,4 +1,10 @@
-import { Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { decode } from "html-entities";
 import React, { useEffect, useState } from "react";
@@ -71,18 +77,34 @@ const Questions = () => {
     }
   };
 
+  const card = (
+    <React.Fragment>
+      <CardContent>
+        <Typography variant="h4">Question {questionIndex + 1}</Typography>
+        <Typography mt={3}>
+          {decode(response.results[questionIndex].question)}
+        </Typography>
+        {options.map((data, id) => (
+          <Box mt={2} key={id}>
+            <Button onClick={handleClickAnswer} variant="contained">
+              {decode(data)}
+            </Button>
+          </Box>
+        ))}
+      </CardContent>
+    </React.Fragment>
+  );
+
   return (
     <Box>
-      <Typography variant="h4">Questions {questionIndex + 1}</Typography>
-      <Typography mt={5}>{decode(response.results[questionIndex].question)}</Typography>
-      {options.map((data, id) => (
-        <Box mt={2} key={id}>
-          <Button onClick={handleClickAnswer} variant="contained">
-            {decode(data)}
-          </Button>
-        </Box>
-      ))}
-      <Box mt={5}>Score: {score}</Box>
+      <Card variant="outlined" style={{ backgroundColor: "#f9f5f4" }}>
+        {card}
+      </Card>
+      <Box mt={5} color={"whitesmoke"}>
+        <Card variant="outlined" style={{ backgroundColor: "#7d9e81" }}>
+        <Typography variant="h5" m={1}>🧙‍♂️ Score: {score}</Typography>
+        </Card>
+      </Box>
     </Box>
   );
 };
