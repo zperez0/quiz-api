@@ -16,7 +16,7 @@ const FinalScore = () => {
     navigate("/");
   };
   return (
-    <Box mt={3}>
+    <Box mt={20} color={"whitesmoke"}>
       <Typography variant="h3" fontWeight="bold" mb={3}>
         Final Score {score}
       </Typography>
