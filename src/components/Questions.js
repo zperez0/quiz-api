@@ -9,14 +9,13 @@ const Questions = () => {
     question_category,
     question_difficulty,
     question_type,
-    amount_of_question,
+    question_amount,
   } = useSelector(state => state);
-  console.log(amount_of_question)
+  console.log( question_category, question_difficulty, question_type )
 
   let apiUrl = `/api.php?amount=10`
 
   const { response, loading } = useAxios({ url: apiUrl })
-  console.log(response)
 
   return (
     <Box>
